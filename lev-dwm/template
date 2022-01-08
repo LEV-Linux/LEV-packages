@@ -1,0 +1,25 @@
+# Template file for 'dwm'
+pkgname=lev-dwm
+version=1.1
+revision=1
+wrksrc="dwm-${version}"
+makedepends="libXinerama-devel libXft-devel freetype-devel"
+short_desc="LEV Linux's fork of the dynamic window manager"
+maintainer="SalahDin Ahmed Salh Rezk <salah2112004@gmail.com>"
+license="MIT"
+homepage="https://lev-linux.github.io"
+distfiles="https://github.com/salahdin-ahmed/dwm/archive/refs/tags/v${version}.tar.gz"
+checksum=de8b2c1651c68125f325f51e0e2dd00e84d6abfad5ea445d57084c011d540700
+
+do_build() {
+	[ -e ${FILESDIR}/config.h ] && cp ${FILESDIR}/config.h config.h
+	sed -i "/CFLAGS/s|\${CPPFLAGS}|& $CFLAGS|g" config.mk
+	sed -i "/LDFLAGS/s|\-s|$LDFLAGS|g" config.mk
+	make CC=$CC INCS="-I. -I${XBPS_CROSS_BASE}/usr/include/freetype2" LIBS="-lX11 -lXinerama -lXft -lfontconfig"
+}
+
+do_install() {
+	make PREFIX=/usr DESTDIR=$DESTDIR install
+	vinstall README 644 usr/share/doc/$pkgname
+	vlicense LICENSE
+}
