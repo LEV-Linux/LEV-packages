@@ -1,6 +1,6 @@
 # Template file for 'lev-dmenu'
 pkgname=lev-dmenu
-version=1.0
+version=1.1
 wrksrc="${pkgname}-${version}"
 revision=1
 makedepends="libXinerama-devel libXft-devel freetype-devel"
@@ -9,7 +9,7 @@ maintainer="SalahDin Ahmed Salh Rezk <salah2112004@gmail.com>"
 license="MIT"
 homepage="http://lev-linux.github.io/"
 distfiles="https://github.com/LEV-Linux/lev-dmenu/archive/refs/tags/v${version}.tar.gz"
-checksum=f25d16a20c2697265868db0f183a6dfc8955e6c81f5438bd78564b7e0e10f863
+checksum=21a888affbedf6f3387fe7e55aa15627eaf6229cf6afa26243a7ea4d7d6a3391
 
 post_patch() {
 	sed -i -e '/CFLAGS/{s/-Os//;s/=/+=/}' \
