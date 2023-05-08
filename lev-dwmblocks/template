@@ -1,0 +1,25 @@
+# Template file for 'dwmblocks'
+pkgname=lev-dwmblocks
+version=1.0
+revision=1
+build_style=gnu-makefile
+short_desc="Async blocks status monitor for dwm"
+maintainer="SalahDin Rezk <salah2112004@gmail.com>"
+license="GPL-2.0"
+homepage="https://lev-linux.github.io"
+distfiles="https://github.com/lev-linux/dwmblocks/archive/refs/tags/v${version}.tar.gz"
+makedepends="libX11-devel"
+checksum=a252350dbac08c44d647a216e40376e22c8c0240fbada1194c177ad55b6f27c0
+
+do_build() {
+	make
+}
+
+do_install() {
+	make PREFIX=/usr DESTDIR=${DESTDIR} install
+}
+
+post_install() {
+	vlicense LICENSE
+}
+
