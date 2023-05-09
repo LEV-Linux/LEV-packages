@@ -1,17 +1,23 @@
-# Template file for 'lev-dmenu'
-pkgname=lev-dmenu
-version=1.1
-wrksrc="${pkgname}-${version}"
+# Template file for 'dmenu'
+pkgname=dmenu
+version=5.2
 revision=1
 makedepends="libXinerama-devel libXft-devel freetype-devel"
-short_desc="LEV Linux's fork of the dynamic menu - an efficient dynamic menu for X."
-maintainer="SalahDin Ahmed Salh Rezk <salah2112004@gmail.com>"
+short_desc="Generic menu for X"
+maintainer="tibequadorian <tibequadorian@posteo.de>"
 license="MIT"
-homepage="http://lev-linux.github.io/"
-distfiles="https://github.com/LEV-Linux/lev-dmenu/archive/refs/tags/v${version}.tar.gz"
+homepage="https://tools.suckless.org/dmenu/"
+distfiles="https://github.com/lev-linux/dmenu/archive/refs/tags/v1.1.tar.gz"
 checksum=21a888affbedf6f3387fe7e55aa15627eaf6229cf6afa26243a7ea4d7d6a3391
 
+build_options="fuzzymatch"
+desc_option_fuzzymatch="Enable Fuzzymatch support"
+
 post_patch() {
+	if [ "$build_option_fuzzymatch" ]; then
+		msg_normal "Applying fuzzymatch patches"
+		patch -slNp1 < "${FILESDIR}/fuzzymatch.patch"
+	fi
 	sed -i -e '/CFLAGS/{s/-Os//;s/=/+=/}' \
 		-e '/LDFLAGS/{s/-s//;s/=/+=/}' config.mk
 }
