@@ -11,8 +11,8 @@ short_desc="Simple terminal implementation for X"
 maintainer="meator <meator.dev@gmail.com>"
 license="MIT"
 homepage="https://st.suckless.org"
-distfiles="https://github.com/lev-linux/st/archive/refs/tags/v1.0.tar.gz"
-checksum=5d800257816db2c51d5c0d31a493d64603c454fb0aa31894c16b7a7e5adb171b
+distfiles="https://github.com/lev-linux/st/archive/refs/tags/v1.0.1.tar.gz"
+checksum=f81479e69ce9b6465fecca5ab43c7f47107f55631b87919c633af50cce43bbf4
 
 pre_build() {
 	# vsed -i config.h -e 's|Liberation Mono|Monospace|g'
